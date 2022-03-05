@@ -2,12 +2,12 @@
 CREATE TABLE "Product" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "price" DECIMAL NOT NULL,
     "sku" TEXT NOT NULL,
-    "published" BOOLEAN NOT NULL DEFAULT false
+    "published" BOOLEAN DEFAULT false
 );
 
 -- CreateIndex

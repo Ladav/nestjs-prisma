@@ -19,5 +19,5 @@ model Product {
   description String?
   price       Decimal
   sku         String  @unique
-  published   Boolean @default(false)
+  published   Boolean? @default(false)
 }
