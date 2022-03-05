@@ -1,6 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common'
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime'
-import { PrismaError } from 'src/common/utils/prisma-error'
+import { Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { CreateProductDto, UpdateProductDto } from './product.dtos'
 
@@ -32,15 +30,8 @@ export class ProductsService {
   }
 
   async deleteById(id: number) {
-    try {
-      await this.prisma.product.delete({
-        where: { id },
-      })
-    } catch (e) {
-      if (e instanceof PrismaClientKnownRequestError && e?.code === PrismaError.RecordDoesNotExist) {
-        throw new NotFoundException('Not found')
-      }
-      throw new InternalServerErrorException()
-    }
+    await this.prisma.product.delete({
+      where: { id },
+    })
   }
 }
